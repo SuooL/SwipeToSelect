@@ -13,7 +13,7 @@ target 'SwipeToSelect' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
-  
+  pod 'PKHUD'
   target 'SwipeToSelectTests' do
     inherit! :search_paths
     # Pods for testing

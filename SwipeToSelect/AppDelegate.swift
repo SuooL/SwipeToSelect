@@ -16,19 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        let launch =  UserDefaults.standard.value(forKey: "firstLaunch")
-        if (launch == nil) {
-            let wordsArray :Array<String> =  WordSource.getwords();
-            for (index, item) in wordsArray.enumerated() {
-                let word = Word();
-                word.id = index
-                word.name = item
-                    word.save();
-            }
-            UserDefaults.standard.set("true", forKey: "firstLaunch")
-        }
-        
         return true
     }
 

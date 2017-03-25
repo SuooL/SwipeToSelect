@@ -55,6 +55,9 @@ class TwoListViewController: UIViewController, UIGestureRecognizerDelegate,UIScr
     // Mark: life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("isisisisi")
+        loadFirstData()
+        print("isisisisi")
         // Mark: initView
         initTableView()
         initFBtn()
@@ -270,6 +273,20 @@ class TwoListViewController: UIViewController, UIGestureRecognizerDelegate,UIScr
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Mark: loadFirstData
+    private func loadFirstData(){
+        if UserDefaults.standard.value(forKey: "firstLaunch") == nil {
+            let wordsArray :Array<String> =  WordSource.getwords();
+            for (index, item) in wordsArray.enumerated() {
+                let word = Word();
+                word.id = index
+                word.name = item
+                word.save();
+            }
+            UserDefaults.standard.set("true", forKey: "firstLaunch")
+        }
     }
 }
 
