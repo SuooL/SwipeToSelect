@@ -19,14 +19,12 @@ class TwoListViewController: UIViewController, UIGestureRecognizerDelegate,UIScr
     @IBOutlet weak var topPanel: UIView!
     @IBOutlet weak var firstBtn: UIButton!
     @IBOutlet weak var secondBtn: UIButton!
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var searchBtn: UIBarButtonItem!
     
 
     var disposeBag = DisposeBag()
-    
+    // Gesture from left ?
     var isLeftPan: Bool = false;
     var lastSelectIndex: IndexPath? = nil
     var presentSelectIndex: IndexPath? = nil
@@ -34,14 +32,13 @@ class TwoListViewController: UIViewController, UIGestureRecognizerDelegate,UIScr
     var fab = KCFloatingActionButton()
     // segment controll indicator
     let scrollBar = UIView()
-    // 列表
+    // tableView
     var tableViewLeft: UITableView = UITableView()
     var tableViewRight: UITableView = UITableView()
-    // 当前
     var isLeftTable: Bool = true
     // 随机
     var isShuffle: Variable<Int> = Variable(0)
-    // 选中的单词
+    // word is selected
     var selectWord: Word = Word()
     
     lazy var search: Search = {
@@ -55,9 +52,6 @@ class TwoListViewController: UIViewController, UIGestureRecognizerDelegate,UIScr
     // Mark: life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("isisisisi")
-        loadFirstData()
-        print("isisisisi")
         // Mark: initView
         initTableView()
         initFBtn()
@@ -273,20 +267,6 @@ class TwoListViewController: UIViewController, UIGestureRecognizerDelegate,UIScr
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // Mark: loadFirstData
-    private func loadFirstData(){
-        if UserDefaults.standard.value(forKey: "firstLaunch") == nil {
-            let wordsArray :Array<String> =  WordSource.getwords();
-            for (index, item) in wordsArray.enumerated() {
-                let word = Word();
-                word.id = index
-                word.name = item
-                word.save();
-            }
-            UserDefaults.standard.set("true", forKey: "firstLaunch")
-        }
     }
 }
 
